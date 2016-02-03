@@ -1,0 +1,17 @@
+<div>
+  {{#each classes}}
+    <h1>{{this.name}}</h1>
+    {{#each this.students}}
+      <p>{{this.name}}</p>
+    {{/each}}
+    <h3>New Student</h3>
+  {{/each}}
+</div>
+
+<div>
+  <h1>New Class</h1>
+  <form id='createClass' action='createClass' method='POST'>
+    Name: <input id='class-name' type='text'/><br/>
+    <input type="submit" value="Create">
+  </form>
+</div>
