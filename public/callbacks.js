@@ -1,6 +1,6 @@
 CALLBACKS = {
   success: {
-    // Make changes to DOM to add new clas
+    // Make changes to DOM to add new class
     createClass: function(data) {
       console.log('callback data', data.name);
       registerSubmits();
@@ -8,6 +8,11 @@ CALLBACKS = {
 
     addStudent: function(data) {
       console.log('callback data', data.name);
+      registerSubmits();
+    },
+
+    redirectGroupGen: function(data) {
+      console.log('callback data', data);
       registerSubmits();
     }
   },

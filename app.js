@@ -29,6 +29,7 @@ app.set('view engine', 'handlebars');
 
 // Routes
 app.get('/', index.home);
+app.get('/groupGen', index.groupGen);
 
 app.post('/createClass', index.createClass);
 app.post('/addStudent', index.addStudent);

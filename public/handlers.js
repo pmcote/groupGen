@@ -26,5 +26,15 @@ HANDLERS = {
       event.preventDefault();
       $.post(route, postData).done(success).error(CALLBACKS.error);
     }
+  },
+
+  redirectGroupGen: function(route, success) {
+    return function(event) {
+      var $form = $(event.target);
+      console.log('event target', event.target);
+      classToGroup = {};
+      classToGroup.name = $form.parent().find('h1').text();
+      console.log('class to make groups with', classToGroup);
+    }
   }
 }

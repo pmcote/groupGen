@@ -2,6 +2,7 @@
   {{#each classes}}
   <div>
     <h1 id='class-id'>{{this.name}}</h1>
+    <form id='groupGen' action='groupGen' method='GET'><input type='submit' value='Create Groups'/></form>
     {{#each this.students}}
       <p>{{this.name}}</p>
     {{/each}}

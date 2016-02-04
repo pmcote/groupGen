@@ -15,6 +15,11 @@ routes.home = function(req, res) {
   });
 },
 
+routes.groupGen = function(req, res) {
+  console.log('groupGen body', req.body);
+  res.end('.');
+},
+
 routes.createClass = function(req, res) {
   var newName = req.body;
   var saveClass = new Class(newName);
@@ -42,7 +47,7 @@ routes.addStudent = function(req, res) {
   console.log('student', student);
 
   var saveStudent = new Student(student);
-
+  // Save student or get id if student exists
   Student.count({'name': studentName}, function(err, count) {
     if (!count){
       saveStudent.save(function(err) {
@@ -53,14 +58,14 @@ routes.addStudent = function(req, res) {
         }
       });
     } else {
-      saveStudent = Student.find({'name': studentName}, function(err, student) {
+      saveStudent = Student.findOne({'name': studentName}, function(err, student) {
         console.log('err finding duplicate', err);
       });
     }
   });
 
-  console.log('student.id', saveStudent._id);
-
+  // Add more err handling here for robustness
+  // Add reference to student in class
   Class.findOneAndUpdate({name: classAdd},
     {$push: {students: {_id: saveStudent._id}}},
     {safe: true, upsert: true},
