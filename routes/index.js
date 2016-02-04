@@ -43,11 +43,19 @@ routes.addStudent = function(req, res) {
 
   var saveStudent = new Student(student);
 
-  saveStudent.save(function(err) {
-    if (err) {
-      console.log('err saving', err);
+  Student.count({'name': studentName}, function(err, count) {
+    if (!count){
+      saveStudent.save(function(err) {
+        if (err) {
+          console.log('err saving', err);
+        } else {
+          console.log('save success');
+        }
+      });
     } else {
-      console.log('save success');
+      saveStudent = Student.find({'name': studentName}, function(err, student) {
+        console.log('err finding duplicate', err);
+      });
     }
   });
 
