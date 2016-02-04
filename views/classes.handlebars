@@ -1,10 +1,16 @@
 <div>
   {{#each classes}}
-    <h1>{{this.name}}</h1>
+  <div>
+    <h1 id='class-id'>{{this.name}}</h1>
     {{#each this.students}}
       <p>{{this.name}}</p>
     {{/each}}
-    <h3>New Student</h3>
+    <h3>Add New Student</h3>
+    <form id='addStudent' action='addStudent' method='POST'>
+      Name: <input id='student-name' type='text'/><br/>
+      <input type='submit' value='Add'>
+    </form>
+  </div>
   {{/each}}
 </div>
 
@@ -12,6 +18,6 @@
   <h1>New Class</h1>
   <form id='createClass' action='createClass' method='POST'>
     Name: <input id='class-name' type='text'/><br/>
-    <input type="submit" value="Create">
+    <input type='submit' value='Create'>
   </form>
 </div>

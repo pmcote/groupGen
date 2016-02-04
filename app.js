@@ -31,6 +31,7 @@ app.set('view engine', 'handlebars');
 app.get('/', index.home);
 
 app.post('/createClass', index.createClass);
+app.post('/addStudent', index.addStudent);
 
 // Listening on. . .
 app.listen(port);

@@ -5,7 +5,9 @@ registerSubmits();
 function registerSubmits() {
   // Unbind existing handlers
   $addClass = $('form#createClass').unbind();
+  $addStudent = $('form#addStudent').unbind();
 
   // Create submit handlers for the ajax requests
-  $addClass.submit(HANDLERS.makeSubmit('createClass', CALLBACKS.success.createClass));
+  $addClass.submit(HANDLERS.makeClassSubmit('createClass', CALLBACKS.success.createClass));
+  $addStudent.submit(HANDLERS.makeStudentSubmit('addStudent', CALLBACKS.success.addStudent));
 }

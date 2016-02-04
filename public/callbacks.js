@@ -4,6 +4,11 @@ CALLBACKS = {
     createClass: function(data) {
       console.log('callback data', data.name);
       registerSubmits();
+    },
+
+    addStudent: function(data) {
+      console.log('callback data', data.name);
+      registerSubmits();
     }
   },
 
