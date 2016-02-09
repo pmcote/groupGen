@@ -15,9 +15,87 @@ routes.home = function(req, res) {
   });
 },
 
-routes.groupGen = function(req, res) {
-  console.log('groupGen body', req.body);
-  res.end('.');
+// routes.groupGen = function(req, res) {
+//   var className = req.query.name;
+//   console.log('className', className);
+//   Class
+//   .findOne({name: className})
+//   .populate('students', 'name')
+//   .exec(function(err, thing) {
+//     console.log('boop', thing);
+//     res.render('grouping', {thing: thing});
+//   });
+//   // var classes = {'name': 'Sex Ed',
+//   //    'students': [
+//   //      {
+//   //        'name': 'Paige'
+//   //      },
+//   //      {
+//   //        'name' : 'Avalon'
+//   //      }
+//   //    ]
+//   //  };
+//   //
+//   // console.log(classes.students);
+// },
+
+routes.groupSort = function(req, res) {
+  var className = req.query.classname;
+  Class
+  .findOne({name: className})
+  .populate('students', 'name')
+  .exec(function(err, classData) {
+    if (err) {
+      console.log('There was an error:', err);
+    }
+
+    var students = classData.students;
+    var number = req.query.number;
+    var typegroup = req.query.typegroup;
+    var numbergroups = 1; //default
+    var sizegroups;
+    var studentNames = [];
+    students.forEach(function(student) {
+      if (student.name === '') {
+        return true
+      } else {
+        studentNames.push(student.name);
+      }
+    });
+
+    //Add int parsing and error checking
+    if (typegroup === "groupsize") {
+      numbergroups = Math.floor(studentNames.length / number);
+    } else if (typegroup === "numgroups") {
+      numbergroups = number;
+    }
+    var sizegroups = Math.floor(studentNames.length/ numbergroups);
+
+    // Set up list of lists
+    groups = [];
+    for (var i=0; i<numbergroups; i++) {
+      groups.push([]);
+    }
+
+    groups.forEach(function(group){
+      var stop = sizegroups;
+      console.log('group',group);
+      for (var i=0; i<stop; i++) {
+        var add = studentNames.pop();
+        group.push(add);
+      }
+    });
+
+    if (studentNames[0]) {
+      groups[0].push(studentNames[0])
+    }
+
+    var toSend = {};
+    toSend.groups = groups;
+    toSend.classGroups = className;
+
+    res.send(toSend);
+  });
 },
 
 routes.createClass = function(req, res) {

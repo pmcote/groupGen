@@ -28,13 +28,33 @@ HANDLERS = {
     }
   },
 
-  redirectGroupGen: function(route, success) {
+  // redirectGroupGen: function(route, success) {
+  //   return function(event) {
+  //     var $form = $(event.target);
+  //     console.log('event target', event.target);
+  //     classToGroup = {};
+  //     classToGroup.name = $form.parent().find('h1').text();
+  //     // console.log('class to make groups with', classToGroup);
+  //     // console.log('route', route + '/' + classToGroup.name);
+  //     // route = route + '/' + classToGroup.name;
+  //     event.preventDefault();
+  //     $.get(route, classToGroup).done(success);
+  //   }
+  // },
+
+  groupSort: function(route, success) {
     return function(event) {
       var $form = $(event.target);
-      console.log('event target', event.target);
-      classToGroup = {};
-      classToGroup.name = $form.parent().find('h1').text();
-      console.log('class to make groups with', classToGroup);
+      var number = $form.find("[name='number']").val();
+      var typegroup = $form.find("[name='typegroup']:checked").val();
+      var classname = $form.parent().find('h1').text();
+      sortParams = {};
+      sortParams.number = number;
+      sortParams.typegroup = typegroup;
+      sortParams.classname = classname;
+      console.log('sortParams', sortParams);
+      event.preventDefault();
+      $.get(route, sortParams).done(success);
     }
   }
 }

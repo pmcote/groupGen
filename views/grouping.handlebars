@@ -1,0 +1,20 @@
+<h2>Generate Groups</h2>
+<h3>Students</h3>
+<div>
+  <h1 id='class-id'>{{this.name}}</h1>
+  {{#each this.students}}
+    <p>{{this.name}}</p>
+  {{/each}}
+</div>
+
+<form id='makeGroups' action='makeGroups' method="POST">
+  Number <input type="text" name="number"></br>
+  <input type="radio" name='typegroup' value="groupsize" checked/> Group Size<br/>
+  <input type="radio" name='typegroup' value="numgroups"/> Number of Groups<br/>
+  <input type="submit" value="Generate Groups">
+</form>
+
+<h3>Groups</h3>
+<div>
+
+</div>

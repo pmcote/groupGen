@@ -1,8 +1,11 @@
 <div>
+  <h1>Classes</h2>
+</div>
+<div class='grid'>
   {{#each classes}}
-  <div>
+  <div class='grid-cell'>
     <h1 id='class-id'>{{this.name}}</h1>
-    <form id='groupGen' action='groupGen' method='GET'><input type='submit' value='Create Groups'/></form>
+    <!-- <form id='groupGen' action='groupGen' method='GET'><input type='submit' value='Create Groups'/></form> -->
     {{#each this.students}}
       <p>{{this.name}}</p>
     {{/each}}
@@ -11,14 +14,31 @@
       Name: <input id='student-name' type='text'/><br/>
       <input type='submit' value='Add'>
     </form>
+
+    <h3>Make Groups</h3>
+    <form id='makeGroups' action='makeGroups' method="GET">
+      Number <input type="text" name="number"></br>
+      <input type="radio" name='typegroup' value="groupsize" checked/> Group Size<br/>
+      <input type="radio" name='typegroup' value="numgroups"/> Number of Groups<br/>
+      <input type="submit" value="Generate Groups">
+    </form>
   </div>
   {{/each}}
+
+  <div class='grid-cell'>
+    <h1>New Class</h1>
+    <form id='createClass' action='createClass' method='POST'>
+      Name: <input id='class-name' type='text'/><br/>
+      <input type='submit' value='Create'>
+    </form>
+  </div>
 </div>
 
-<div>
-  <h1>New Class</h1>
-  <form id='createClass' action='createClass' method='POST'>
-    Name: <input id='class-name' type='text'/><br/>
-    <input type='submit' value='Create'>
-  </form>
+<div class='groupings'>
+  <h1 class='group-name'></h3>
+  <div class='group'>
+    <h3 class='group-number'></h4>
+    <ul class='names'>
+    </ul>
+  </div>
 </div>
