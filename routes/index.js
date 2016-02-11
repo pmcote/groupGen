@@ -109,7 +109,7 @@ routes.createClass = function(req, res) {
           console.log('err saving', err);
         } else {
           console.log('save success');
-          res.end('.');
+          res.send(newName);
         }
       })
     } else {
@@ -119,12 +119,10 @@ routes.createClass = function(req, res) {
 },
 
 routes.addStudent = function(req, res) {
-  console.log('boop');
   var classAdd = req.body.className;
   var studentName = req.body.name;
   var student = {name: studentName};
   var sendToCallback = {studentName: studentName, className: classAdd};
-  console.log('student', student);
 
   var saveStudent = new Student(student);
   // Save student or get id if student exists

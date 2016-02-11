@@ -3,7 +3,7 @@
 </div>
 <div class='grid'>
   {{#each classes}}
-  <div class='grid-cell'>
+  <div class='grid-cell class-clone'>
     <h1 id='class-id'>{{this.name}}</h1>
     <!-- <form id='groupGen' action='groupGen' method='GET'><input type='submit' value='Create Groups'/></form> -->
     <span class='student-append {{this.name}}'>
@@ -29,6 +29,7 @@
     </form>
   </div>
   {{/each}}
+
 
   <div class='grid-cell'>
     <h1>New Class</h1>
