@@ -2,12 +2,17 @@ CALLBACKS = {
   success: {
     // Make changes to DOM to add new class
     createClass: function(data) {
-      console.log('callback data', data.name);
+      console.log('callback data', data);
       registerSubmits();
     },
 
     addStudent: function(data) {
-      console.log('callback data', data.name);
+      var className = data.className;
+      var studentName = data.studentName;
+      var placeStudent = '.'+className;
+      var $nameSpan = $('.student-name').first().clone();
+      $nameSpan.find('p').html(studentName);
+      $(placeStudent).append($nameSpan);
       registerSubmits();
     },
 

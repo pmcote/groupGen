@@ -6,9 +6,14 @@
   <div class='grid-cell'>
     <h1 id='class-id'>{{this.name}}</h1>
     <!-- <form id='groupGen' action='groupGen' method='GET'><input type='submit' value='Create Groups'/></form> -->
-    {{#each this.students}}
-      <p>{{this.name}}</p>
-    {{/each}}
+    <span class='student-append {{this.name}}'>
+      {{#each this.students}}
+      <span class='student-name'>
+        <p id='student-name'>{{this.name}}</p>
+      </span>
+      {{/each}}
+    </span>
+
     <h3>Add New Student</h3>
     <form id='addStudent' action='addStudent' method='POST'>
       Name: <input id='student-name' type='text'/><br/>

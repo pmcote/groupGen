@@ -1,6 +1,6 @@
 var $addClass;
 var $addStudent;
-var $redirectGroupGen;
+// var $redirectGroupGen;
 var $groupSort;
 
 registerSubmits();

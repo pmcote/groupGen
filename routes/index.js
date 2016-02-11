@@ -119,9 +119,11 @@ routes.createClass = function(req, res) {
 },
 
 routes.addStudent = function(req, res) {
+  console.log('boop');
   var classAdd = req.body.className;
   var studentName = req.body.name;
   var student = {name: studentName};
+  var sendToCallback = {studentName: studentName, className: classAdd};
   console.log('student', student);
 
   var saveStudent = new Student(student);
@@ -148,6 +150,8 @@ routes.addStudent = function(req, res) {
     {$push: {students: {_id: saveStudent._id}}},
     {safe: true, upsert: true},
     function(err, classRes){console.log(err)});
+
+  res.send(sendToCallback);
 }
 
 module.exports = routes;
